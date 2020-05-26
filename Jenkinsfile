@@ -1,6 +1,6 @@
 pipeline{
  	
- 	agent { label 'java-jenkins-slave.11' } // Es el agente con Java 11
+ 	agent { label 'java11' }
 
   	stages{
   		stage ('Build') {
