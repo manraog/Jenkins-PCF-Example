@@ -29,7 +29,8 @@ pipeline{
 				  target: 'api.run.pivotal.io',
 				  organization: 'joel.hernandez-org',
 				  cloudSpace: 'development',
-				  credentialsId: 'pcfdev_user'
+				  credentialsId: 'pcfdev_user',
+				  manifestChoice: [manifestFile: 'manifest.yml']
 				)
         	}
         }
