@@ -1,4 +1,4 @@
 ---
 applications:
-  - name: springboot
+  - name: springboot-testeando-2020
     path: build/libs/springboot-0.0.1-SNAPSHOT.jar

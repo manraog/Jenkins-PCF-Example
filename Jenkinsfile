@@ -19,8 +19,6 @@ pipeline{
 
   		stage ('Package') {
   			steps {	
-	  			sh 'echo $JAVA_HOME'
-	  			sh 'ls -la /usr/lib/jvm/'
 	  			sh './gradlew bootJAr --no-daemon'
 	  		}
         }
