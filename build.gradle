@@ -23,9 +23,3 @@ test {
 	useJUnitPlatform()
 	maxParallelForks = 1 //Solo Openshift
 }
-
-//Solo para Openshift
-tasks.withType(JavaCompile) {
-    //enable compilation in a separate daemon process
-    options.fork = false
-}

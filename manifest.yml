@@ -1,0 +1,4 @@
+---
+applications:
+  - name: springboot
+    path: build/libs/springboot-0.0.1-SNAPSHOT.jar
