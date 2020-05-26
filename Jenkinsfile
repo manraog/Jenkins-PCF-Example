@@ -12,7 +12,16 @@ pipeline{
         stage('Test') {
         	steps{
         		sh './gradlew test --no-daemon'
+        		publishHTML([
+        			reportDir: 'build/reports/tests/test',
+        			reportFiles: 'index.html',
+        			reportName: 'Tests Report',
+        			keepAll: true,
+					allowMissing: false, 
+					alwaysLinkToLastBuild: false
+        		])
         	}
         }
+
     }
 }
