@@ -1,6 +1,6 @@
 pipeline{
  	
- 	agent { label 'maven' } // Es el agente que tiene Java 11 y Java 8
+ 	agent { label 'java-jenkins-slave.11' } // Es el agente con Java 11
 
   	stages{
   		stage ('Build') {

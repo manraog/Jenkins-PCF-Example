@@ -23,7 +23,6 @@ test {
 	useJUnitPlatform()
 }
 
-bootRun {
-	sourceResources sourceSets.main
-	}
-
+//Solo para Openshift
+java { options.fork = false }
+test { maxParallelForks = 1 } 
