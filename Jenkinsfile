@@ -5,7 +5,9 @@ pipeline{
   	stages{
         stage('Test') {
         	steps{
-        		sh './gradlew test --no-daemon'
+        		withGradle {
+        			sh './gradlew test'
+        		}
         		publishHTML([
         			reportDir: 'build/reports/tests/test',
         			reportFiles: 'index.html',
@@ -19,7 +21,9 @@ pipeline{
 
   		stage ('Package') {
   			steps {	
-	  			sh './gradlew bootJAr --no-daemon'
+	  			withGradle {
+	  				sh './gradlew bootJar'
+	  			}
 	  		}
         }
 
