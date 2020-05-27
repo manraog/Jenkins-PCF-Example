@@ -28,6 +28,7 @@ pipeline{
         }
 
         stage ('CF Push'){
+        	when { branch 'master' }
         	steps {
 	        	pushToCloudFoundry(
 				  target: 'api.run.pivotal.io',

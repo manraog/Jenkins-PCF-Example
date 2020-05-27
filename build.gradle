@@ -21,5 +21,4 @@ dependencies {
 
 test {
 	useJUnitPlatform()
-//	maxParallelForks = 1 //Solo Openshift
 }
