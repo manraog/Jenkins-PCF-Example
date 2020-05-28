@@ -89,6 +89,8 @@ Para desplegar nuestra aplicación podemos ejecutar gradlew e instalar `cf` en e
 
 Pero para tener una mejor integración con Jenkins usaremos los plugins de [Gradle](https://plugins.jenkins.io/gradle/) y [Cloud Foundry](https://plugins.jenkins.io/cloudfoundry/).
 
+Debemos crear un archivo _Jenkinsfile_ en la raíz de nuestro proyecto, dentro crearemos la definición del pipeline.
+
 ### Pruebas
 
 Primero queremos ejecutar las pruebas unitarias de nuestro código, el reporte se genera por defecto en la ruta `build/reports/tests/test`
@@ -171,10 +173,36 @@ publishHTML([
 ])
 ```
 
-## Ejecución
+## Jenkins
 
-Si hacemos un _push_ a Github podremos ver un indicador verde o rojo a un lado del _commit id_ con el estado del build, al dar clic nos enviara a la Jenkins.
+Debemos indicarle a Jenkins la URL de nuestro repositorio para ejecutar el pipeline.
 
-Si hacemos un pull request también podremos ver el estadodel branch de origen y del pull request.
+Hay dos formas:
+
+1. Creando una organización de Github en Jenkins.
+
+Aquí tendremos que darle a Jenkins más permisos, todos los repositorios que contengan un Jenkinsfile y se encuentren en la organización se agregan a Jenkins, también configura un webhook en ellos para para ejecutarse cada que hay un commit, branch o pull request nuevo. Incluso si creamos nuevos repositorios dentro de la organización se agregan a Jenkins de forma automática.
+
+https://www.jenkins.io/doc/book/pipeline-as-code/
+
+2. Crear un multibranch pipeline.
+
+Si solo queremos agregar un repositorio a Jenkins y no toda una organización podemos usar un multibranch pipeline.
+
+Github tiene [una guía basten sencilla](https://resources.github.com/whitepapers/practical-guide-to-CI-with-Jenkins-and-GitHub/) para lograrlo, solo tenemos que genera un [_personal acces token_](https://github.blog/2013-05-16-personal-api-tokens/) para que Jenkins pueda acceder al repositorio incluso si es privado.
+
+### Ejecución
+
+Si hacemos un _push_ a Github podremos ver un indicador (_check_) a un lado del _commit id_ con el estado del build (cómo en e caso de este repositorio), al dar clic nos enviara a la Jenkins. 
+
+![mini checks](https://help.github.com/assets/images/help/pull_requests/commit-list-statuses.png)
+
+El indicador tiene 3 colores:
+
+- Naranja/Amarillo: Pipeline en ejecución
+- Verde: Ejecución de Pipeline exitosa
+- Rojo: Ejecución de Pipeline fallida
+
+Si hacemos un pull request también podremos ver el estado del branch de origen y del pull request.
 
 ![checks](https://resources.github.com/assets/img/whitepapers/gh-required-status.png)
