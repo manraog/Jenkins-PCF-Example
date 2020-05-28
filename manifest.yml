@@ -3,6 +3,7 @@ applications:
   - name: springboot-testeando-2020
     path: build/libs/springboot-0.0.1-SNAPSHOT.jar
     instances: 1
+#   buildpack: java_buildpack
 #   memory: 512M
 #   random-route: true
     env:
