@@ -5,3 +5,5 @@ applications:
     instances: 1
 #   memory: 512M
 #   random-route: true
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
