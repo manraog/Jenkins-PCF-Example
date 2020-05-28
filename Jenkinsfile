@@ -8,14 +8,6 @@ pipeline{
         		withGradle {
         			sh './gradlew test'
         		}
-        		publishHTML([
-        			reportDir: 'build/reports/tests/test',
-        			reportFiles: 'index.html',
-        			reportName: 'Tests Report',
-        			keepAll: true,
-					allowMissing: false, 
-					alwaysLinkToLastBuild: false
-        		])
         	}
         }
 
@@ -40,4 +32,20 @@ pipeline{
         	}
         }
     }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+            junit 'build/test-results/test/*.xml'
+            publishHTML([
+        		reportDir: 'build/reports/tests/test',
+        		reportFiles: 'index.html',
+        		reportName: 'Tests Report',
+        		keepAll: true,
+				allowMissing: false, 
+				alwaysLinkToLastBuild: false
+        	])
+        }
+    }
+
 }
